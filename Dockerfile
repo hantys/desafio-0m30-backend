@@ -29,10 +29,6 @@ COPY . ./
 
 RUN gem install bundler
 
-ENV BUNDLE_PATH=/bundle \
-    BUNDLE_BIN=/bundle/bin \
-    GEM_HOME=/bundle
-
 RUN gem update --system
 
 RUN bundle install

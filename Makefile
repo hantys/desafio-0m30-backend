@@ -13,7 +13,7 @@ log:
 	docker-compose log
 
 bash:
-	docker exec -it desafio-0m30-backend ash
+	docker exec -it desafio-0m30-backend bash
 
 create:
 	docker-compose exec app bundle exec rake db:setup db:migrate
