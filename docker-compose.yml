@@ -8,11 +8,10 @@ volumes:
 services:
   app: 
     platform: linux/amd64 
-    container_name: api-fitness-food
+    container_name: desafio-0m30-backend
     build:
       context: .
       dockerfile: Dockerfile
-    command: foreman start
     working_dir: /app
     depends_on:     
       - database
