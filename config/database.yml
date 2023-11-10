@@ -1,0 +1,24 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  port: <%= ENV['DATABASE_PORT'] || '5432' %>
+  host: <%= ENV['DATABASE_HOST'] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
+
+development:
+  <<: *default
+  database: desafio_0m30_backend_development
+
+test:
+  <<: *default
+  database: desafio_0m30_backend_test
+
+# production:
+#   <<: *default
+#   database: desafio_0m30_backend_production
+#   username: desafio_0m30_backend
+#   password: <%= ENV["DESAFIO_0M30_BACKEND_DATABASE_PASSWORD"] %>

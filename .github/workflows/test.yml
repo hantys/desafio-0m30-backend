@@ -1,0 +1,47 @@
+name: Test
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    environment: test
+    services:
+      postgres:
+        image: postgres:14.7-alpine
+        ports:
+          - "5432:5432"
+        env:
+          POSTGRES_DB: desafio_0m30_backend_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: root
+    env:
+      RAILS_ENV: test
+      DATABASE_URL: "postgres://postgres:root@localhost:5432/desafio_0m30_backend_test"
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install Ruby and gems
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.2
+        bundler-cache: true
+
+    - name: Install dependencies
+      run: |
+        gem install bundler
+        bundle lock --add-platform x86_64-linux
+        bundle install
+
+    - name: Set up database schema
+      run: bin/rails db:schema:load
+      # run: rails db:migrate
+
+    - name: Run Tests
+      run: bundle exec rspec --format progress
