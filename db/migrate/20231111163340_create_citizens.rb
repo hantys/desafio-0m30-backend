@@ -1,7 +1,7 @@
 class CreateCitizens < ActiveRecord::Migration[7.1]
   def change
     create_table :citizens do |t|
-      t.string :full_nome
+      t.string :full_name
       t.string :document_number
       t.string :cns
       t.string :email
@@ -10,7 +10,7 @@ class CreateCitizens < ActiveRecord::Migration[7.1]
 
       t.timestamps
     end
-    add_index :citizens, :full_nome
+    add_index :citizens, :full_name
     add_index :citizens, :document_number
     add_index :citizens, :cns
     add_index :citizens, :email

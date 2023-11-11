@@ -10,8 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 0) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_11_163340) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "citizens", force: :cascade do |t|
+    t.string "full_name"
+    t.string "document_number"
+    t.string "cns"
+    t.string "email"
+    t.integer "status"
+    t.date "birth_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cns"], name: "index_citizens_on_cns"
+    t.index ["document_number"], name: "index_citizens_on_document_number"
+    t.index ["email"], name: "index_citizens_on_email"
+    t.index ["full_name"], name: "index_citizens_on_full_name"
+  end
 
 end

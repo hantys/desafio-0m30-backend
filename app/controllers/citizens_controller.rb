@@ -1,5 +1,5 @@
 class CitizensController < ApplicationController
-  before_action :set_citizen, only: %i[ show edit update destroy ]
+  before_action :set_citizen, only: %i[show edit update destroy]
 
   # GET /citizens or /citizens.json
   def index
@@ -7,8 +7,7 @@ class CitizensController < ApplicationController
   end
 
   # GET /citizens/1 or /citizens/1.json
-  def show
-  end
+  def show; end
 
   # GET /citizens/new
   def new
@@ -16,8 +15,7 @@ class CitizensController < ApplicationController
   end
 
   # GET /citizens/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /citizens or /citizens.json
   def create
@@ -58,13 +56,14 @@ class CitizensController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_citizen
-      @citizen = Citizen.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def citizen_params
-      params.require(:citizen).permit(:full_nome, :document_number, :cns, :email, :status, :birth_date)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_citizen
+    @citizen = Citizen.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def citizen_params
+    params.require(:citizen).permit(:full_name, :document_number, :cns, :email, :status, :birth_date)
+  end
 end
