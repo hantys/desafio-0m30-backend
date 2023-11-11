@@ -36,7 +36,8 @@ jobs:
     - name: Install dependencies
       run: |
         gem install bundler
-        bundle lock --add-platform x86_64-linux
+        bundle config set --local without 'production'
+        bundle config set --local path 'vendor/bundle'
         bundle install --force
 
     - name: Set up database schema
