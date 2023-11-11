@@ -29,7 +29,7 @@ Rails.application.configure do
   config.cache_store = :null_store
 
   # Raise exceptions instead of rendering exception templates.
-  config.action_dispatch.show_exceptions = :rescuable
+  config.action_dispatch.show_exceptions = false
 
   # Disable request forgery protection in test environment.
   config.action_controller.allow_forgery_protection = false
@@ -62,3 +62,5 @@ Rails.application.configure do
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
 end
+
+Rails.application.routes.default_url_options = { host: '0.0.0.0', port: 3000, protocol: 'http' }

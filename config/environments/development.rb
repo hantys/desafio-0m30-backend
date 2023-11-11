@@ -62,21 +62,21 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
-  # Raises error for missing translations.
-  # config.i18n.raise_on_missing_translations = true
+  config.action_mailer.default charset: 'utf-8'
+  config.action_mailer.delivery_method = :smtp
 
-  # Annotate rendered view with file names.
-  # config.action_view.annotate_rendered_view_with_filenames = true
+  config.action_mailer.smtp_settings = { address: '127.0.0.1', port: 1025, domain: '127.0.0.1' }
+  config.action_mailer.default_url_options = { host: '127.0.0.1', port: 3000 }
 
-  # Uncomment if you wish to allow Action Cable access from any origin.
-  # config.action_cable.disable_request_forgery_protection = true
 
-  # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
 
   config.after_initialize do
     Bullet.enable = true
     Bullet.bullet_logger = true
     Bullet.rails_logger = true
+    Bullet.add_footer = true
   end
 end
+
+Rails.application.routes.default_url_options = { host: '127.0.0.1', port: 3000, protocol: 'http' }
