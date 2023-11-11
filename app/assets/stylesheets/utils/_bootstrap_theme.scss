@@ -1,0 +1,59 @@
+// CUSTOM NAMESPACE COLLORS
+$white: #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black: #000 !default;
+
+// CUSTOM COLORS
+$blue: #004a61 !default;
+$indigo: #6610f2 !default;
+$purple: #7230e3 !default;
+$pink: #d63384 !default;
+$red: #d20000 !default;
+$orange: #fd7e14 !default;
+$yellow: #ffc107 !default;
+$green: #00b273 !default;
+$green-alt: #02951a !default;
+$teal: #20c997 !default;
+$cyan: #00b3ff !default;
+$golden: #e4c34d !default;
+$lime: #d0ffcc !default;
+$light-red: #ffcccc !default;
+$light-green: #e5edef !default;
+
+$primary: $blue !default;
+$secondary: $gray-300 !default;
+$success: $green !default;
+$success-alt: $green-alt !default;
+$info: $cyan !default;
+$warning: $yellow !default;
+$danger: $red !default;
+$light: $gray-100 !default;
+$dark: #172b4d !default;
+$default: #172b4d !default;
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "success-alt": $success-alt,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark,
+  "default": $default,
+  "golden": $golden,
+  "lime": $lime,
+  "light-red": $light-red,
+  "light-green": $light-green,
+) !default;
+
+// CUSTOM NAMESPACE COLLORS

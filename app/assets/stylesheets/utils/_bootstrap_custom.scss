@@ -1,0 +1,24 @@
+[class*="btn-outline"] {
+  background-color: #fff;
+}
+
+[class*="btn-outline-success"]:hover {
+  color: #fff;
+}
+[class*="btn-info"],
+[class*="btn-info"]:hover,
+[class*="btn-success"],
+[class*="btn-success"]:hover {
+  color: #fff;
+}
+
+form:not(.simple_form) {
+  label.required:after {
+    content: " *";
+    color: $danger;
+  }
+}
+
+.ls-1 {
+  letter-spacing: 0.25rem;
+}

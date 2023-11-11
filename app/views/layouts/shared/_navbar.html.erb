@@ -1,0 +1,18 @@
+<nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row shadow-sm border-bottom">
+  <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+    <%= link_to root_path, class: 'navbar-brand brand-logo' do %>
+      <%= image_tag 'om30.jpg', alt: "logo" %>
+    <% end %>
+    <%= link_to root_path, class: 'navbar-brand brand-logo-mini' do %>
+      <%= image_tag 'icon_om30.jpg', alt: "logo" %>
+    <% end %>
+  </div>
+  <div class="navbar-menu-wrapper d-flex align-items-stretch">
+    <button class="navbar-toggler align-self-center tippy" type="button" data-toggle="minimize" data-tippy-content="Menu">
+      <i class="bi bi-list"></i>
+    </button>
+    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+      <i class="bi bi-list"></i>
+    </button>
+  </div>
+</nav>
