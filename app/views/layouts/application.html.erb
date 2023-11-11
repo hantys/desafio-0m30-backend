@@ -1,16 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
   <head>
-    <title>App</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>DESAFIO 0M30 BACKEND</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <% unless Rails.env.development? %>
+      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <% end %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
+  <body data-theme="admin">
+    <div class="preloader d-none">
+      <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+      </svg>
+    </div>
+    <div class="container-scroller" id="app">
+      <%= render 'layouts/shared/navbar' %>
+      <div class="pl-0 container-fluid page-body-wrapper">
+        <%= render partial: "layouts/shared/sidebar" %>
+        <main class="main-panel">
+          <div class="mb-0 page-header">
+            <div class="container-lg m-auto">
+              <div class="flex-row d-flex justify-content-between align-items-center">
+                <%= yield(:page_header) %>
+              </div>
+            </div>
+          </div>
+          <div class="content-wrapper">
+            <div class="container-lg m-auto">
+              <%= yield %>
+            </div>
+          </div>
+          <%= render partial: 'layouts/shared/footer' %>
+        </main>
+      </div>
+    </div>
 
-  <body>
-    <%= yield %>
+    <%= render partial: 'layouts/shared/dynamic_modal' %>
+    <!-- Latest compiled and minified JavaScript -->
+    <%= yield(:javascripts) %>
+    <%#= pnotify_flash -%>
   </body>
 </html>

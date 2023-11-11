@@ -1,0 +1,26 @@
+<nav class="shadow-sm sidebar sidebar-offcanvas" id="sidebar" v-cloak>
+  <ul class="nav">
+    <%= tag.li class:"nav-item nav-profile" do %>
+      <%= link_to root_path, class: 'nav-link' do%>
+        <div class="nav-profile-image">
+          <h3 class="mb-0">
+            <i class="bi bi-diagram-3"></i>
+          </h3>
+        </div>
+        <div class="nav-profile-text d-flex flex-column ms-2">
+          <span class="fw-bold text-wrap lh-base">
+            Menu Principal
+          </span>
+        </div>
+      <% end %>
+      <hr>
+    <% end %>
+    <!-- MENU PRINCIPAL -->
+    <sidebar-actions title="Menu" v-cloak></sidebar-actions>
+    <!-- ITENS -->
+    <%= render "layouts/shared/item_menu", title: t('.title', default: Citizen.model_name.human.pluralize.titleize), link: citizens_path, active: (controller_name == 'citizens' && (['index', 'show'].include? action_name)), icon: 'people' %>
+    
+    <%= render "layouts/shared/item_menu", title: ('Cadastro ' + t('.title', default: Citizen.model_name.human.pluralize.titleize)), link: new_citizen_path, active: (controller_name == 'citizens' && (['new', 'edit'].include? action_name)), icon: 'person-plus' %>
+
+  </ul>
+</nav>

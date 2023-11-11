@@ -1,0 +1,7 @@
+<%= tag.li class: "nav-item ".concat(active ? 'active' : '') do %>
+  <%= link_to '#', class: "nav-link ".concat(active == true ? 'active' : ''), onclick: link.nil? ? "" : "location.href='#{link}'; return false;" do %>
+    <span class="menu-title <%= link.nil? ? "disabled-link" : "" %>"><%= title %></span>
+    <%= tag.i class: "menu-icon bi bi-#{icon}" %>
+
+  <% end %>
+<% end %>

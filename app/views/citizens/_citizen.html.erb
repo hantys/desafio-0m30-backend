@@ -1,32 +1,20 @@
-<div id="<%= dom_id citizen %>">
-  <p>
-    <strong>Full nome:</strong>
-    <%= citizen.full_name %>
-  </p>
-
-  <p>
-    <strong>Document number:</strong>
-    <%= citizen.document_number %>
-  </p>
-
-  <p>
-    <strong>Cns:</strong>
-    <%= citizen.cns %>
-  </p>
-
-  <p>
-    <strong>Email:</strong>
-    <%= citizen.email %>
-  </p>
-
-  <p>
-    <strong>Status:</strong>
-    <%= citizen.status %>
-  </p>
-
-  <p>
-    <strong>Birth date:</strong>
-    <%= citizen.birth_date %>
-  </p>
-
-</div>
+<tr class="align-middle text-center" data-citizen-id="<%= citizen.id -%>">
+  <td class="d"><%= citizen&.id %></td>
+  <td><%= citizen&.full_name %></td>
+  <td><%= citizen&.document_number %></td>
+  <td><%= citizen&.cns %></td>
+  <td><%= citizen&.email %></td>
+  <td><%= citizen&.status  %></td>
+  <td><%=l(citizen&.birth_date) if citizen&.birth_date.present? %></td>
+  <td width="200" class="options">
+    <%= link_to citizen_path(citizen), class: 'btn btn-info btn-sm text-white', data: { turbo: false } do %>
+      <i data-feather="eye"></i>
+    <% end %>
+    <%= link_to edit_citizen_path(citizen), class: ' btn btn-primary btn-sm' do %>
+      <i data-feather="edit"></i>
+    <% end %>
+    <%= link_to citizen_path(citizen), method: :delete, data: { confirm: t("helpers.confirm"), turbo: true }, class: 'btn btn-danger btn-sm' do %>
+      <i data-feather="trash-2"></i>
+    <% end %>
+  </td>
+</tr>

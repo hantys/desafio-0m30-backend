@@ -1,0 +1,19 @@
+.form-check.form-check-inline {
+  padding-top: 0.5rem !important;
+}
+
+label.form-label {
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.table > :not(:first-child) {
+  border-top: 1px solid currentColor;
+}
+
+abbr[title] {
+  text-decoration: none;
+  border-bottom: 0;
+  cursor: default;
+  color: $danger;
+}

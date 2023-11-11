@@ -1,0 +1,154 @@
+// CUSTOM TEMPLATE
+body:not(.sidebar-icon-only) {
+  @include media-breakpoint-up(lg) {
+    .sidebar {
+      .nav .nav-item {
+        padding: 0 1rem 0 1rem;
+      }
+
+      .nav .nav-item:not(.nav-profile) .nav-link {
+        padding-left: 3rem;
+
+        position: relative;
+
+        .menu-icon {
+          position: absolute;
+          left: 0;
+        }
+      }
+
+      .nav .nav-item.nav-profile.active {
+        .nav-link {
+          padding-left: 0;
+        }
+      }
+    }
+  }
+}
+
+body.sidebar-icon-only {
+  .sidebar {
+    .navbar-toggler-botton {
+      i.bi-chevron-double-left::before {
+        content: "\F280";
+      }
+    }
+  }
+}
+
+.sidebar {
+  .nav .nav-item .nav-link {
+    i.menu-icon {
+      color: $gray-600;
+    }
+  }
+
+  .nav.sub-menu .nav-item .nav-link {
+    padding-left: 1.25rem !important;
+  }
+
+  .nav .nav-item.active > .nav-link i {
+    color: $gray-900;
+  }
+
+  .nav .nav-item.active > .nav-link .menu-title {
+    color: $gray-900;
+  }
+
+  .nav.sub-menu .nav-item .nav-link.active {
+    color: $gray-900;
+  }
+
+  .navbar-toggler-botton {
+    display: block;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}
+
+.page-header {
+  background: rgba(108, 117, 125, 0.05);
+  padding: 2rem 2rem;
+}
+
+.main-panel {
+  @include media-breakpoint-up(lg) {
+    .content-wrapper {
+      padding: 0 1.5rem 1.5rem;
+    }
+  }
+}
+
+::selection,
+option:hover {
+  background-color: $primary !important;
+  color: $white;
+}
+
+.options {
+  a.btn {
+    svg.feather {
+      width: 18px;
+      height: 18px;
+      margin-bottom: 0.15rem;
+    }
+  }
+}
+
+.nav-profile {
+  .dropdown-menu[data-bs-popper] {
+    top: 100%;
+    left: -80px;
+    margin-top: 0.125rem;
+  }
+}
+
+.nav-profile-img {
+  .circle-initial-letter {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.dropdown-store-select {
+  left: 0 !important;
+}
+
+.nav-select-store {
+  overflow: inherit !important;
+}
+
+.custom-dropdown-toggle {
+  white-space: initial;
+}
+
+.tabs-show {
+  height: 304px;
+  width: 232px;
+  font-size: 12px;
+  .card-header {
+    font-size: 14px;
+  }
+}
+
+.sidebar-offcanvas {
+  &.active {
+    .nav .nav-item .nav-link {
+      position: relative;
+      .menu-title {
+        margin-left: 2rem;
+      }
+      .menu-icon {
+        position: absolute;
+        left: 0;
+      }
+    }
+
+    .nav-profile.active .dropdown-menu[data-bs-popper] {
+      left: -25% !important;
+      max-width: 230px;
+    }
+  }
+}
