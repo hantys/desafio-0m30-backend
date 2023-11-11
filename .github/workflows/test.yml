@@ -37,7 +37,7 @@ jobs:
       run: |
         gem install bundler
         bundle lock --add-platform x86_64-linux
-        bundle install
+        bundle install --force
 
     - name: Set up database schema
       run: bin/rails db:schema:load
