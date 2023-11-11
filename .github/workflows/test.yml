@@ -27,6 +27,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Remove Gemfile.lock
+      run: rm Gemfile.lock
+
     - name: Install Ruby and gems
       uses: ruby/setup-ruby@v1
       with:
@@ -36,9 +39,9 @@ jobs:
     - name: Install dependencies
       run: |
         gem install bundler
-        bundle config
-        bundle config frozen false
-        bundle install --deployment
+        bundle config set --local without 'production'
+        bundle config set --local path 'vendor/bundle'
+        bundle install --force
 
     - name: Set up database schema
       run: bin/rails db:schema:load
