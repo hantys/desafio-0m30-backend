@@ -36,3 +36,11 @@ rspec:
 reset:
 	docker-compose exec app bundle exec rake db:drop db:setup db:create db:migrate db:seed
 
+rollback:
+	docker-compose exec app rails db:rollback
+
+rubocop:
+	docker-compose exec app rubocop --safe-auto-correct
+
+permission:
+	sudo chown -R $(shell whoami):$(shell whoami) .

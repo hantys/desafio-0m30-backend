@@ -49,7 +49,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
 
   # https://github.com/ffaker/ffaker
-  gem 'ffaker'
+  gem 'faker'
 
   gem 'pry-rails'
 
