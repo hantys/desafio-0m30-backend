@@ -50,7 +50,7 @@ class CitizensController < ApplicationController
     @citizen.destroy!
 
     respond_to do |format|
-      format.html { redirect_to citizens_url, notice: "Citizen was successfully destroyed." }
+      format.html { redirect_to citizens_url, notice: "Citizen was successfully destroyed.", status: :no_content }
       format.json { head :no_content }
     end
   end

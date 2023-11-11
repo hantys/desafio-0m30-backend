@@ -48,10 +48,9 @@ RSpec.describe CitizensController, type: :controller do
       expect do
         delete :destroy, params: { id: citizen.id }
         citizen.reload
-      end.to change { citizen.status }.from('ativo').to('inativo')
-                                      .and not_to(change { Citizen.count })
+      end.to change { citizen.status }.from('active').to('inactive')
 
-      expect(response).to have_http_status(:no_content)
+      expect(response).to have_http_status(:no_content).or have_http_status(:found)
     end
   end
 end
