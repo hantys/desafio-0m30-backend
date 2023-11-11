@@ -27,8 +27,13 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Remove Gemfile.lock
-      run: rm Gemfile.lock
+    - name: Cache Bundler
+      uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gems-
 
     - name: Install Ruby and gems
       uses: ruby/setup-ruby@v1
@@ -41,11 +46,11 @@ jobs:
         gem install bundler
         bundle config set --local without 'production'
         bundle config set --local path 'vendor/bundle'
-        bundle install --force
+        bundle install
 
     - name: Set up database schema
-      run: bin/rails db:schema:load
-      # run: rails db:migrate
+      run: bin/rails db:migrate
+      # run: bin/rails db:schema:load
 
     - name: Run Tests
       run: bundle exec rspec --format progress
