@@ -36,9 +36,8 @@ jobs:
     - name: Install dependencies
       run: |
         gem install bundler
-        bundle config set --local without 'production'
-        bundle config set --local path 'vendor/bundle'
-        bundle install --force
+        bundle config unset frozen
+        bundle install
 
     - name: Set up database schema
       run: bin/rails db:schema:load
