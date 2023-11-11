@@ -41,7 +41,8 @@ module App
 
     config.generators do |g|
       g.test_framework :rspec,
-                       view_specs: false
+                       view_specs: false,
+                       controller_specs: true
     end
   end
 end
