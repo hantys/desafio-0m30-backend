@@ -36,7 +36,8 @@ jobs:
     - name: Install dependencies
       run: |
         gem install bundler
-        bundle config unset frozen
+        bundle lock --add-platform x86_64-linux
+        bundle config frozen false
         bundle install
 
     - name: Set up database schema
