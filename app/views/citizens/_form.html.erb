@@ -16,9 +16,19 @@
         <%= f.input :document_number %>
         <%= f.input :cns %>
         <%= f.input :email %>
-        <%= f.input :birth_date, as: :string, input_html: {type: :date} %>
-        
-        <div class="card" style="width: 18rem;">
+        <div class="row mt-2">
+          <div class="col-2">
+            <%= f.input :country_code, as: :string %>
+          </div>
+          <div class="col-4">
+            <%= f.input :phone_number %>
+          </div>
+          <div class="col">
+            <%= f.input :birth_date, as: :string, input_html: {type: :date} %>
+          </div>
+        </div>
+
+        <div class="card mt-2" style="width: 18rem;">
           <div class="card-body">
             <%= image_tag(f.object&.avatar.variant(:medium), class: "card-img-top", alt: "avatar_thumb") if !f.object.new_record? && f.object.avatar.attached? %>
             <p class="card-text">

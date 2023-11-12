@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_12_024708) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_12_055440) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,10 +51,22 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_12_024708) do
     t.date "birth_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "country_code", default: "+55"
+    t.string "phone_number"
     t.index ["cns"], name: "index_citizens_on_cns"
     t.index ["document_number"], name: "index_citizens_on_document_number"
     t.index ["email"], name: "index_citizens_on_email"
     t.index ["full_name"], name: "index_citizens_on_full_name"
+  end
+
+  create_table "phones", force: :cascade do |t|
+    t.string "country_code", default: "+55"
+    t.string "number"
+    t.string "phonable_type", null: false
+    t.bigint "phonable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["phonable_type", "phonable_id"], name: "index_phones_on_phonable"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
