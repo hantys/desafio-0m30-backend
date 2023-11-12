@@ -6,6 +6,7 @@ require 'kaminari'
 require 'kaminari/helpers/helper_methods'
 require 'active_record'
 require 'kaminari/activerecord/active_record_extension'
+require 'kaminari/actionview/action_view_extension'
 
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'

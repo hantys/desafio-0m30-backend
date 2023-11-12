@@ -63,6 +63,14 @@ RSpec.describe Citizen, type: :model do
     }
   end
 
+  context 'HasOneAttached' do
+    it 'check create avatar' do
+      citizen = create(:citizen)
+      expect(citizen.avatar.attached?).to be(true)
+      expect(citizen.avatar.download).to_not be_nil
+    end
+  end
+
   context 'Index' do
     it { is_expected.to have_db_index(:full_name) }
     it { is_expected.to have_db_index(:cns) }
@@ -77,5 +85,6 @@ RSpec.describe Citizen, type: :model do
     it { is_expected.to validate_presence_of(:email) }
     it { is_expected.to validate_presence_of(:status) }
     it { is_expected.to validate_presence_of(:birth_date) }
+    it { is_expected.to validate_presence_of(:avatar) }
   end
 end
