@@ -3,7 +3,9 @@ class CitizensController < ApplicationController
 
   # GET /citizens or /citizens.json
   def index
-    @citizens = Citizen.all
+    @q = Citizen.ransack(params[:q])
+    @q.sorts = 'id desc' if @q.sorts.empty?
+    @citizens = @q.result.page(params[:page])
   end
 
   # GET /citizens/1 or /citizens/1.json

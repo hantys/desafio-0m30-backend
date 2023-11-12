@@ -1,0 +1,26 @@
+<%- model_class = Citizen -%>
+<div class="block block-rounded mb-3">
+  <div class="block-content p-2">
+    <%= search_form_for @q, url: url_search, html: { class: ''} do |f| %>
+      <div class="row g-2 align-items-center mb-2">
+        <div class="col-4">
+          <%= f.text_field :id_eq, class: "form-control w-lg-25  my-1 mr-2", placeholder:  model_class.human_attribute_name(:id) %>
+          <%= f.text_field :full_name_cont, class: "form-control w-lg-25  my-1 mr-2", placeholder:  model_class.human_attribute_name(:full_name) %>
+          <%= f.text_field :email_cont, class: "form-control w-lg-25  my-1 mr-2", placeholder:  model_class.human_attribute_name(:email) %>
+        </div>
+        <div class="col-4">
+          <%= f.text_field :document_number_cont, class: "form-control w-lg-25  my-1 mr-2", placeholder:  model_class.human_attribute_name(:document_number) %>
+          <%= f.text_field :cns_cont, class: "form-control w-lg-25  my-1 mr-2", placeholder:  model_class.human_attribute_name(:cns) %>
+        </div>
+      </div>
+          <%= f.button class: "btn btn-outline-primary has_icon mr-2", data: { disable_with: "loader Buscando..." } do %>
+            <span class="mdi mdi-magnify mdi-18px"></span>
+            Buscar
+          <% end %>
+          <%= link_to url_search, class: 'btn btn-outline-dark has_icon' do %>
+            <span class="mdi mdi-close mdi-18px"></span>
+            Limpar
+          <% end %>
+    <% end %>
+  </div>
+</div>

@@ -40,7 +40,10 @@ gem 'kaminari'
 gem 'redis', '4.5.1'
 
 # https://github.com/activerecord-hackery/ransack
-gem 'ransack', '~> 3.2.1'
+gem 'ransack'
+
+# https://github.com/cyu/rack-cors
+gem 'rack-cors', '1.0.3'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"

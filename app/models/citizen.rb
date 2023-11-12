@@ -31,6 +31,10 @@ class Citizen < ApplicationRecord
     update_attribute(:status, 0)
   end
 
+  def self.ransackable_attributes(_auth_object = nil)
+    ["cns", "document_number", "email", "full_name", "id", "status"]
+  end
+
   private
 
   def purge_avatar
