@@ -13,12 +13,16 @@ class Citizen < ApplicationRecord
   validates :status, presence: true
   validates :birth_date, presence: true
   validates :avatar, presence: true
+  validates :country_code, presence: true
+  validates :phone_number, presence: true
 
   ## ACTIVE STORAGE
   has_one_attached :avatar do |attachable|
     attachable.variant :thumb, resize_to_limit: [90, 90]
     attachable.variant :medium, resize_to_limit: [160, 160]
   end
+
+  ## ASSOCIATIONS
 
   ## CALLBACKS
   after_save :purge_avatar, if: -> { remove_avatar == '1' }

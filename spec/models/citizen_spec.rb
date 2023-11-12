@@ -85,6 +85,8 @@ RSpec.describe Citizen, type: :model do
     it { is_expected.to validate_presence_of(:email) }
     it { is_expected.to validate_presence_of(:status) }
     it { is_expected.to validate_presence_of(:birth_date) }
+    it { is_expected.to validate_presence_of(:phone_number) }
+    it { is_expected.to validate_presence_of(:country_code) }
     it { is_expected.to validate_presence_of(:avatar) }
   end
 end
