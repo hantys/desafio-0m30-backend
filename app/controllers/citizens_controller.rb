@@ -14,6 +14,7 @@ class CitizensController < ApplicationController
   # GET /citizens/new
   def new
     @citizen = Citizen.new
+    @citizen.build_address
   end
 
   # GET /citizens/1/edit

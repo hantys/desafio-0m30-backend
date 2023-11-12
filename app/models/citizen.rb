@@ -2,6 +2,9 @@ class Citizen < ApplicationRecord
   ## ATTRIBUTES
   attr_accessor :remove_avatar
 
+  ## CONCERNS
+  include Addresable
+
   # Enuns
   enum status: { active: 1, inactive: 0 }
 
