@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
   tzdata \
   curl \
   git \
+  libvips \
   imagemagick \
   ruby-dev \
   libpq-dev \

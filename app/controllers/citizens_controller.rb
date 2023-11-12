@@ -25,7 +25,7 @@ class CitizensController < ApplicationController
 
     respond_to do |format|
       if @citizen.save
-        format.html { redirect_to citizen_url(@citizen), notice: "Citizen was successfully created." }
+        format.html { redirect_to citizens_url, notice: "Citizen was successfully created." }
         format.json { render :show, status: :created, location: @citizen }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class CitizensController < ApplicationController
   def update
     respond_to do |format|
       if @citizen.update(citizen_params)
-        format.html { redirect_to citizen_url(@citizen), notice: "Citizen was successfully updated." }
+        format.html { redirect_to citizens_url, notice: "Citizen was successfully updated." }
         format.json { render :show, status: :ok, location: @citizen }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -66,6 +66,6 @@ class CitizensController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def citizen_params
-    params.require(:citizen).permit(:full_name, :document_number, :cns, :email, :status, :birth_date)
+    params.require(:citizen).permit(:full_name, :document_number, :cns, :email, :birth_date, :avatar, :remove_avatar)
   end
 end

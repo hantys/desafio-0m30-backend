@@ -1,5 +1,12 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
+require 'redis'
+require 'simple_form'
+require 'kaminari'
+require 'kaminari/helpers/helper_methods'
+require 'active_record'
+require 'kaminari/activerecord/active_record_extension'
+
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 # Prevent database truncation if the environment is production

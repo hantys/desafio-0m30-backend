@@ -1,10 +1,9 @@
-<h1>Editing citizen</h1>
 
-<%= render "form", citizen: @citizen %>
-
-<br>
-
-<div>
-  <%= link_to "Show this citizen", @citizen %> |
-  <%= link_to "Back to citizens", citizens_path %>
-</div>
+<%- model_class = Citizen -%>
+<%= content_for :page_header do %>
+  <h3><%=t '.title', default: [:'helpers.titles.new', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h3>
+  <%= link_to citizens_path, class: 'btn btn-outline-primary btn-lg fw-bold ms-3 fs-6 px-4' do %>
+    <%= t('.back', default: t("helpers.links.back")) %>
+  <% end %>
+<% end %>
+<%= render 'form', citizen: @citizen, model_class: model_class %>

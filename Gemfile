@@ -35,7 +35,7 @@ gem "image_processing", ">= 1.2"
 gem 'simple_form'
 
 # https://github.com/kaminari/kaminari
-gem 'kaminari'
+gem 'kaminari', '1.2.2'
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '4.5.1'
 

@@ -6,5 +6,6 @@ FactoryBot.define do
     birth_date { FFaker::Date.birthday(min_age: 20, max_age: 50) }
     document_number { FFaker::IdentificationBR.cpf }
     cns { rand(10**14..10**15 - 1) }
+    avatar { Rack::Test::UploadedFile.new("public/teste.jpg", "image/jpeg") }
   end
 end
