@@ -29,8 +29,18 @@ gem "jbuilder"
 # https://github.com/twbs/bootstrap-rubygem
 gem 'bootstrap', '~> 5.3.2'
 gem "sassc-rails"
+
+gem "image_processing", ">= 1.2"
+
+gem 'simple_form'
+
+# https://github.com/kaminari/kaminari
+gem 'kaminari'
 # Use Redis adapter to run Action Cable in production
-# gem "redis", ">= 4.0.1"
+gem 'redis', '4.5.1'
+
+# https://github.com/activerecord-hackery/ransack
+gem 'ransack', '~> 3.2.1'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
