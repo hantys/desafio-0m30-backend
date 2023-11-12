@@ -1,47 +1,39 @@
-<%= form_with(model: citizen) do |form| %>
+<%= simple_form_for(@citizen) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
   <% if citizen.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(citizen.errors.count, "error") %> prohibited this citizen from being saved:</h2>
-
-      <ul>
-        <% citizen.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+    <ul class="list-group list-group-flush">
+      <% citizen.errors.each do |error| %>
+        <li class="list-group-item"><%= error.full_message %></li>
+      <% end %>
+    </ul>
   <% end %>
 
-  <div>
-    <%= form.label :full_name, style: "display: block" %>
-    <%= form.text_field :full_name %>
+  <div class="block block-rounded block-themed shadow-sm">
+    <div class="block-content">
+      <div class="form-group mb-3 withIcon">
+        <%= f.input :full_name %>
+        <%= f.input :document_number %>
+        <%= f.input :cns %>
+        <%= f.input :email %>
+        <%= f.input :birth_date, as: :string, input_html: {type: :date} %>
+        
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <%= image_tag(f.object&.avatar.variant(:medium), class: "card-img-top", alt: "avatar_thumb") if !f.object.new_record? && f.object.avatar.attached? %>
+            <p class="card-text">
+              <%= f.input :avatar, as: :file %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div>
-    <%= form.label :document_number, style: "display: block" %>
-    <%= form.text_field :document_number %>
-  </div>
-
-  <div>
-    <%= form.label :cns, style: "display: block" %>
-    <%= form.text_field :cns %>
-  </div>
-
-  <div>
-    <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
-  </div>
-
-  <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.number_field :status %>
-  </div>
-
-  <div>
-    <%= form.label :birth_date, style: "display: block" %>
-    <%= form.date_field :birth_date %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="block block-rounded block-themed shadow-sm">
+    <div class="block-content text-center">
+      <%= f.submit nil, class: 'btn btn-primary', data: {disable_with: 'Salvando...'} %>
+      <%= link_to t('.cancel', default: t("helpers.links.cancel")),
+                  citizens_path, class: 'btn btn-outline-primary' %>
+    </div>
   </div>
 <% end %>

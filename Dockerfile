@@ -7,9 +7,11 @@ RUN apt-get update && apt-get install -y \
   tzdata \
   curl \
   git \
+  libvips \
   imagemagick \
   ruby-dev \
   libpq-dev \
+  libjpeg-dev  \
   build-essential \
   libssl-dev \
   libreadline-dev \

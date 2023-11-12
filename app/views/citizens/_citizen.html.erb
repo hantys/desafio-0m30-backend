@@ -1,5 +1,6 @@
 <tr class="align-middle text-center" data-citizen-id="<%= citizen.id -%>">
   <td class="d"><%= citizen&.id %></td>
+  <td><%= image_tag citizen&.avatar.variant(:thumb) if citizen.avatar.attached? %></td>
   <td><%= citizen&.full_name %></td>
   <td><%= citizen&.document_number %></td>
   <td><%= citizen&.cns %></td>

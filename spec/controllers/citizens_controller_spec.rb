@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe CitizensController, type: :controller do
-  render_views
-
   describe "GET #index" do
     it "responds a 200 response" do
       get :index

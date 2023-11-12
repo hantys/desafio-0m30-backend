@@ -1,10 +1,56 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @citizen %>
-
-<div>
-  <%= link_to "Edit this citizen", edit_citizen_path(@citizen) %> |
-  <%= link_to "Back to citizens", citizens_path %>
-
-  <%= button_to "Destroy this citizen", @citizen, method: :delete %>
+<%- model_class = Citizen -%>
+<%= content_for :page_header do %>
+  <h3 class="fs-4 d-flex align-items-center">
+    <%=t '.title', :default => model_class.model_name.human.titleize %>
+  </h3>
+  <%= link_to citizens_path, class: 'btn btn-outline-primary btn-lg fw-bold ms-3 fs-6 px-4' do %>
+    <%= t('.back', default: t("helpers.links.back")) %>
+  <% end %>
+<% end %>
+<div class="block block-rounded block-themed shadow-sm">
+  <div class="table-responsive">
+    <table class="table mb-0">
+      <tbody>
+        <tr class="align-middle">
+          <th><%= model_class.human_attribute_name(:id) %></th>
+          <td><%= @citizen&.id %></td>
+        </tr>
+        <tr class="align-middle">
+          <th><%= model_class.human_attribute_name(:avatar) %></th>
+          <td><%= image_tag @citizen&.avatar.variant(:medium) if @citizen.avatar.attached? %></td>
+        </tr>
+        <tr class="align-middle">
+          <th><%= model_class.human_attribute_name(:full_name) %></th>
+          <td><%= @citizen&.full_name %></td>
+        </tr>
+        <tr class="align-middle">
+          <th><%= model_class.human_attribute_name(:document_number) %></th>
+          <td><%= @citizen&.document_number %></td>
+        </tr>
+        <tr class="align-middle">
+          <th><%= model_class.human_attribute_name(:cns) %></th>
+          <td><%= @citizen&.cns %></td>
+        </tr>
+        <tr class="align-middle">
+          <th><%= model_class.human_attribute_name(:email) %></th>
+          <td><%= @citizen&.email %></td>
+        </tr>
+        <tr class="align-middle">
+          <th><%= model_class.human_attribute_name(:status) %></th>
+          <td><%= @citizen&.status %></td>
+        </tr>
+        
+        <tr class="align-middle">
+          <th><%= model_class.human_attribute_name(:birth_date) %></th>
+          <td><%= l(@citizen&.birth_date) rescue '--' %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="text-end">
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                edit_citizen_path(@citizen), class: 'btn btn-primary' %>
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+                citizens_path, class: 'btn btn-outline-primary' %>
 </div>

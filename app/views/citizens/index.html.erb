@@ -6,17 +6,18 @@
   <% end %>
 <% end %>
 
-<%#= render 'search', url_search: "/canais/#{action_name}" %>
+<%= render 'search', url_search: citizens_path %>
 
 <div class="paginateBox <%= 'no-records' if @citizens.count.zero? %>">
-  <%#= paginate @citizens %>
-  <%#= page_entries_info @citizens %>
+  <%= paginate @citizens %>
+  <%= page_entries_info @citizens %>
 </div>
 <div class="table-responsive">
   <table class="table table-striped table-hover table-xs bg-white">
     <thead>
       <tr class="text-uppercase align-middle">
         <th class="text-center"><%= model_class.human_attribute_name(:id) -%></th>
+        <th class="text-center"><%= model_class.human_attribute_name(:avatar) %></th>
         <th class="text-center"><%= model_class.human_attribute_name(:full_name) %></th>
         <th class="text-center"><%= model_class.human_attribute_name(:document_number) %></th>
         <th class="text-center"><%= model_class.human_attribute_name(:cns) %></th>
@@ -32,6 +33,6 @@
   </table>
 </div>
 <div class="paginateBox <%= 'no-records' if @citizens.count.zero? %>">
-  <%#= paginate @citizens %>
-  <%#= page_entries_info @citizens %>
+  <%= paginate @citizens %>
+  <%= page_entries_info @citizens %>
 </div>
