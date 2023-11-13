@@ -1,26 +1,27 @@
 <%- model_class = Citizen -%>
+<%- model_class_address = Address -%>
 <div class="block block-rounded mb-3">
   <div class="block-content p-2">
     <%= search_form_for @q, url: url_search, html: { class: ''} do |f| %>
       <div class="row g-2 align-items-center mb-2">
         <div class="col-4">
-          <%= f.text_field :id_eq, class: "form-control w-lg-25  my-1 mr-2", placeholder:  model_class.human_attribute_name(:id) %>
-          <%= f.text_field :full_name_cont, class: "form-control w-lg-25  my-1 mr-2", placeholder:  model_class.human_attribute_name(:full_name) %>
-          <%= f.text_field :email_cont, class: "form-control w-lg-25  my-1 mr-2", placeholder:  model_class.human_attribute_name(:email) %>
+          <%= f.text_field :full_name_or_email_or_cns_cont, class: "form-control w-lg-25  my-1 mr-2", placeholder:  "#{model_class.human_attribute_name(:full_name)} ou #{model_class.human_attribute_name(:email)} ou #{model_class.human_attribute_name(:cns)}" %>
+          <%= f.text_field :document_number_cont, class: "cpf form-control w-lg-25  my-1 mr-2", placeholder:  model_class.human_attribute_name(:document_number) %>
         </div>
         <div class="col-4">
-          <%= f.text_field :document_number_cont, class: "form-control w-lg-25  my-1 mr-2", placeholder:  model_class.human_attribute_name(:document_number) %>
-          <%= f.text_field :cns_cont, class: "form-control w-lg-25  my-1 mr-2", placeholder:  model_class.human_attribute_name(:cns) %>
+          <%= f.text_field 'address_cep_eq', class: "cep form-control w-lg-25  my-1 mr-2", placeholder:  model_class_address.human_attribute_name(:cep) %>
+          <%= f.text_field 'address_city_or_address_state_cont', class: "cep form-control w-lg-25  my-1 mr-2", placeholder: "#{model_class_address.human_attribute_name(:city)} ou #{model_class_address.human_attribute_name(:state)}" %>
         </div>
       </div>
-          <%= f.button class: "btn btn-outline-primary has_icon mr-2", data: { disable_with: "loader Buscando..." } do %>
-            <span class="mdi mdi-magnify mdi-18px"></span>
-            Buscar
-          <% end %>
-          <%= link_to url_search, class: 'btn btn-outline-dark has_icon' do %>
-            <span class="mdi mdi-close mdi-18px"></span>
-            Limpar
-          <% end %>
+      
+      <%= f.button class: "btn btn-outline-primary has_icon mr-2", data: { disable_with: "loader Buscando..." } do %>
+        <span class="mdi mdi-magnify mdi-18px"></span>
+        Buscar
+      <% end %>
+      <%= link_to url_search, class: 'btn btn-outline-dark has_icon' do %>
+        <span class="mdi mdi-close mdi-18px"></span>
+        Limpar
+      <% end %>
     <% end %>
   </div>
 </div>

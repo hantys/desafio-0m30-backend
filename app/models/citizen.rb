@@ -2,6 +2,9 @@ class Citizen < ApplicationRecord
   ## ATTRIBUTES
   attr_accessor :remove_avatar
 
+  ## CONCERNS
+  include Addresable
+
   # Enuns
   enum status: { active: 1, inactive: 0 }
 
@@ -15,6 +18,7 @@ class Citizen < ApplicationRecord
   validates :avatar, presence: true
   validates :country_code, presence: true
   validates :phone_number, presence: true
+  validates :address, presence: true
 
   ## ACTIVE STORAGE
   has_one_attached :avatar do |attachable|
@@ -23,23 +27,55 @@ class Citizen < ApplicationRecord
   end
 
   ## ASSOCIATIONS
+  delegate :cep,
+           :street,
+           :neighborhood,
+           :number,
+           :city,
+           :state,
+           :complement,
+           :ibge, to: :address, allow_nil: true
 
   ## CALLBACKS
   after_save :purge_avatar, if: -> { remove_avatar == '1' }
 
   # Metodos
+  def full_address
+    "
+    <p>
+    #{street}, #{number} - #{neighborhood} <br>
+    #{complement}
+    </p>
+    #{city}-#{state} /
+    #{cep}
+      <br>
+      IGBE:#{ibge}
+    ".html_safe
+  end
+
   # Sobrescreva o método 'delete' para definir o status como 0
   def delete
-    update_attribute(:status, 0)
+    value = status == 'inactive' ? 1 : 0
+    update_attribute(:status, value)
   end
 
   # Sobrescreva o método 'destroy' para definir o status como 0
   def destroy
-    update_attribute(:status, 0)
+    value = status == 'inactive' ? 1 : 0
+    update_attribute(:status, value)
   end
 
   def self.ransackable_attributes(_auth_object = nil)
-    ["cns", "document_number", "email", "full_name", "id", "status"]
+    [
+      "cns", "document_number",
+      "email",
+      "full_name", "id", "status",
+      'addressable_cep'
+    ]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    ['addressable', 'address']
   end
 
   private

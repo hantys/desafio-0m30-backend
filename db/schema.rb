@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_12_055440) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_12_191557) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,22 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_12_055440) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "addresses", force: :cascade do |t|
+    t.string "cep"
+    t.string "street"
+    t.string "neighborhood"
+    t.string "number"
+    t.string "city"
+    t.string "state"
+    t.string "complement"
+    t.string "ibge"
+    t.string "addressable_type"
+    t.bigint "addressable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable"
+  end
+
   create_table "citizens", force: :cascade do |t|
     t.string "full_name"
     t.string "document_number"
@@ -57,16 +73,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_12_055440) do
     t.index ["document_number"], name: "index_citizens_on_document_number"
     t.index ["email"], name: "index_citizens_on_email"
     t.index ["full_name"], name: "index_citizens_on_full_name"
-  end
-
-  create_table "phones", force: :cascade do |t|
-    t.string "country_code", default: "+55"
-    t.string "number"
-    t.string "phonable_type", null: false
-    t.bigint "phonable_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["phonable_type", "phonable_id"], name: "index_phones_on_phonable"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

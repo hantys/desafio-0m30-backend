@@ -3,7 +3,7 @@ class CitizensController < ApplicationController
 
   # GET /citizens or /citizens.json
   def index
-    @q = Citizen.ransack(params[:q])
+    @q = Citizen.includes([avatar_attachment: [:blob]]).ransack(params[:q])
     @q.sorts = 'id desc' if @q.sorts.empty?
     @citizens = @q.result.page(params[:page])
   end
@@ -14,10 +14,13 @@ class CitizensController < ApplicationController
   # GET /citizens/new
   def new
     @citizen = Citizen.new
+    @citizen.build_address
   end
 
   # GET /citizens/1/edit
-  def edit; end
+  def edit
+    @citizen.build_address if @citizen.address.nil?
+  end
 
   # POST /citizens or /citizens.json
   def create
@@ -28,7 +31,10 @@ class CitizensController < ApplicationController
         format.html { redirect_to citizens_url, notice: "Citizen was successfully created." }
         format.json { render :show, status: :created, location: @citizen }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html do
+          @citizen.build_address if @citizen.address.nil?
+          render :new, status: :unprocessable_entity
+        end
         format.json { render json: @citizen.errors, status: :unprocessable_entity }
       end
     end
@@ -41,7 +47,10 @@ class CitizensController < ApplicationController
         format.html { redirect_to citizens_url, notice: "Citizen was successfully updated." }
         format.json { render :show, status: :ok, location: @citizen }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html do
+          @citizen.build_address if @citizen.address.nil?
+          render :edit, status: :unprocessable_entity
+        end
         format.json { render json: @citizen.errors, status: :unprocessable_entity }
       end
     end
@@ -53,7 +62,14 @@ class CitizensController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to citizens_url, notice: "Citizen was successfully destroyed.", status: :no_content }
-      format.json { head :no_content }
+      format.turbo_stream do
+        @citizen.reload
+        render turbo_stream: turbo_stream.replace(
+          "partial_citizen_#{params[:id]}",
+          partial: 'citizens/citizen',
+          locals: { citizen: @citizen }
+        )
+      end
     end
   end
 
@@ -66,7 +82,19 @@ class CitizensController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def citizen_params
-    params.require(:citizen).permit(:full_name, :document_number, :cns, :email,
-                                    :birth_date, :avatar, :remove_avatar, :phone_number, :country_code)
+    params.require(:citizen).permit(
+      :full_name, :document_number, :cns, :email,
+      :birth_date, :avatar, :remove_avatar, :phone_number, :country_code,
+      address_attributes: %i[
+        cep
+        street
+        number
+        neighborhood
+        complement
+        ibge
+        city
+        state
+      ]
+    )
   end
 end

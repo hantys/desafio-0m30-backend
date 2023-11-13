@@ -1,12 +1,8 @@
 import feather from "feather-icons";
-import { domReady } from "../utils";
 
 const initFeather = function () {
-  document.addEventListener("turbo:load", () => {
-    feather.replace();
-  });
+  feather.replace();
 };
 
-window.feather = feather;
-
-export default domReady(initFeather);
+document.addEventListener("turbo:load", initFeather);
+document.addEventListener("turbo:render", initFeather);

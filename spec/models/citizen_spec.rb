@@ -89,4 +89,8 @@ RSpec.describe Citizen, type: :model do
     it { is_expected.to validate_presence_of(:country_code) }
     it { is_expected.to validate_presence_of(:avatar) }
   end
+
+  context 'Associations' do
+    it { is_expected.to have_one(:address).dependent(:destroy).class_name('Address').with_foreign_key('addressable_id') }
+  end
 end

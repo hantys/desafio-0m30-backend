@@ -18,12 +18,14 @@
       <tr class="text-uppercase align-middle">
         <th class="text-center"><%= model_class.human_attribute_name(:id) -%></th>
         <th class="text-center"><%= model_class.human_attribute_name(:avatar) %></th>
-        <th class="text-center"><%= model_class.human_attribute_name(:full_name) %></th>
-        <th class="text-center"><%= model_class.human_attribute_name(:document_number) %></th>
-        <th class="text-center"><%= model_class.human_attribute_name(:cns) %></th>
-        <th class="text-center"><%= model_class.human_attribute_name(:email) %></th>
-        <th class="text-center"><%= model_class.human_attribute_name(:status) %></th>
-        <th class="text-center"><%= model_class.human_attribute_name(:birth_date) %></th>
+        <th class="text-center">
+          <p>
+            <%= model_class.human_attribute_name(:full_name) %>
+          </p>
+        </th>
+        <th class="text-center"><%= "#{model_class.human_attribute_name(:document_number)} / #{model_class.human_attribute_name(:cns)}" %></th>
+        <th class="text-center">Contatos</th>
+        <th class="text-center"><%= model_class.human_attribute_name(:address)%></th>
         <th class="text-center"><%=t '.actions', default: t("helpers.actions") %></th>
       </tr>
     </thead>

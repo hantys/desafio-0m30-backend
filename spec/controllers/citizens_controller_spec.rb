@@ -18,9 +18,13 @@ RSpec.describe CitizensController, type: :controller do
 
   describe "POST #create" do
     let(:citizen_params) { { citizen: attributes_for(:citizen) } }
+    let(:citizen_params) do
+      address = attributes_for(:address)
+
+      { citizen: attributes_for(:citizen, address_attributes: address) }
+    end
 
     it "creates a new citizen" do
-      puts citizen_params
       expect do
         post :create, params: citizen_params
       end.to change(Citizen, :count).by(1)

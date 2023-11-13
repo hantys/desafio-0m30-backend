@@ -1,0 +1,33 @@
+pt-BR:
+  activerecord:
+    models:
+      citizen: Munícipe
+      address: Endereço
+    attributes:
+      default_attributes: &default_attributes
+        created_at: Cadastrado em
+        updated_at: Atualizado em
+
+      citizen:
+        <<: *default_attributes
+        avatar: Foto
+        full_name: Nome Completo
+        document_number: CPF
+        cns: CNS(cartão nacional de saúde)
+        email: Email
+        status: 
+        birth_date: Data nascimento
+        country_code: Código do Pais
+        phone_number: Telefone
+        address: Endereço
+
+      address:
+        <<: *default_attributes
+        street: Logradouro
+        number: Número
+        cep: CEP
+        neighborhood: Bairro
+        complement: Complemento
+        state: UF
+        city: Cidade
+        ibge: IBGE
