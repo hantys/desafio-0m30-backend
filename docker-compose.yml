@@ -30,7 +30,7 @@ services:
     environment:
       RAILS_ENV: development
       ACCOUNT_SID: 'AC8807016260319b6d80900970b8ce5def'
-      AUTH_TOKEN: '739f0466a8fe3ebcfd188109c8c5448e'
+      AUTH_TOKEN: '3b4952fae884d10af10e806b1fb37160'
       PHONE_NUMBER: '+12564149837'
       POSTGRES_USER: 'postgres'
       POSTGRES_PASSWORD: 'root'

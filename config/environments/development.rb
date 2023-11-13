@@ -76,7 +76,7 @@ Rails.application.configure do
     authentication: :plain,
     enable_starttls_auto: true
   }
-
+  config.action_mailer.perform_deliveries = true
 
   config.action_controller.raise_on_missing_callback_actions = true
 
