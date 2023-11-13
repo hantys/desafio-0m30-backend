@@ -1,8 +1,7 @@
 
-import jquery from "jquery";
+import * as $ from "jquery";
 
-window.jQuery = jquery;
-window.$ = jquery;
+
 
 import "./initializers/feather";
 
