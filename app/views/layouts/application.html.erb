@@ -13,6 +13,15 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <%= favicon_link_tag "favicon-16x16.png", rel: "shortcut icon", sizes: "16x16" %>
+    <%= favicon_link_tag "favicon-32x32.png", rel: "shortcut icon", sizes: "32x32" %>
+    <%= favicon_link_tag "android-chrome-192x192.png", rel: "icon", type: "image/png", sizes: "192x192" %>
+    <%= favicon_link_tag "android-chrome-512x512.png", rel: "icon", type: "image/png", sizes: "512x512" %>
+    <%= favicon_link_tag "favicon.ico", rel: "icon", type: "image/x-icon" %>
+    <%= favicon_link_tag "apple-touch-icon.png", rel: "apple-touch-icon", sizes: "180x180" %>
+
+
   </head>
   <body data-theme="admin">
     <div class="preloader d-none">
