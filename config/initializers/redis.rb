@@ -1,1 +1,1 @@
-REDIS = Redis.new(url: ENV['REDISTOGO_URL'])
+REDIS = Redis.new(url: ENV['UPSTASH_REDIS_URL'])

@@ -65,8 +65,17 @@ Rails.application.configure do
   config.action_mailer.default charset: 'utf-8'
   config.action_mailer.delivery_method = :smtp
 
-  config.action_mailer.smtp_settings = { address: '127.0.0.1', port: 1025, domain: '127.0.0.1' }
+  # config.action_mailer.smtp_settings = { address: '127.0.0.1', port: 1025, domain: '127.0.0.1' }
   config.action_mailer.default_url_options = { host: '127.0.0.1', port: 3000 }
+
+  config.action_mailer.smtp_settings = {
+    address: 'smtp-relay.sendinblue.com',
+    port: 587,
+    user_name: 'thegamestudio10@gmail.com',
+    password: 'xsmtpsib-43ce21b82e9e97bad1ac29706fc36e0390cfbd073cda714904ee4c29644e52c9-UBRvsVOxz6pmaXkZ',
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
 
 
   config.action_controller.raise_on_missing_callback_actions = true

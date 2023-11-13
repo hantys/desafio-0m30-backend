@@ -34,7 +34,7 @@ RUN gem install bundler
 # RUN gem update --system
 
 RUN bundle install
-RUN yarn install
+# RUN yarn install
 
 COPY ./entrypoints/docker-entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/docker-entrypoint.sh

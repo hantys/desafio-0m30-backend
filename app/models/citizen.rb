@@ -40,6 +40,8 @@ class Citizen < ApplicationRecord
 
   ## CALLBACKS
   after_save :purge_avatar, if: -> { remove_avatar == '1' }
+  after_create :send_wellcome
+  after_update :send_update
 
   # Metodos
   def full_address
@@ -59,12 +61,14 @@ class Citizen < ApplicationRecord
   def delete
     value = status == 'inactive' ? 1 : 0
     update_attribute(:status, value)
+    send_update
   end
 
   # Sobrescreva o método 'destroy' para definir o status como 0
   def destroy
     value = status == 'inactive' ? 1 : 0
     update_attribute(:status, value)
+    send_update
   end
 
   def self.ransackable_attributes(_auth_object = nil)
@@ -98,5 +102,25 @@ class Citizen < ApplicationRecord
     return if CnsGeretare.validate(cns)
 
     errors.add(:cns, 'não é um CNS válido')
+  end
+
+  def send_wellcome
+    body = 'Bem-vindo ao nosso serviço! Obrigado por se cadastrar.'
+    send_sms(body)
+    send_email(body)
+  end
+
+  def send_update
+    body = 'Seu cadastro foi alterado.'
+    send_sms(body)
+    send_email(body)
+  end
+
+  def send_sms(body)
+    SmsDeliveryJob.perform_later(country_code + phone_number, body)
+  end
+
+  def send_email(body)
+    CitizenMailer.info_email(self, body).deliver_later
   end
 end
