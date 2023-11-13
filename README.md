@@ -19,3 +19,18 @@
 - Entra no console: ``$ make console``.
 
 ### Para acesso local: http://0.0.0.0:3000/
+
+### Para acesso produção: https://desafio-om30.casaeacessorios.com.br/
+
+### Observações
+  - Deploy feito no Heroku
+  - Estou utilizando Github Actions para rodar os testes antes do PR
+  - O modelo Address, resolvi fazer ele polimorfico, pensando que ele pode ser reutilizado em outros modelos que vao ter endereço no sistema
+  - Criei uma Classe para controlar o CNS, onde eu faço a validação do núnmero e implementei tambem geração, caso possivel evolução do sistema
+  - Optei utilizar o ransack para busca no sistema por sem mais pratico
+  - Paginação feita usando kaminari
+  - Templete baseado no bootstrap
+  - Na parte das views optei por fazer algo simples para exibir todos os dados dos clientes
+  - Para facilitar o cadastro do endereço, estou usando um serviço externo para consultar o cep
+  - Estou utilizando a gem Bullet, ajudar a aumentar o desempenho do seu aplicativo, reduzindo o número de consultas que ele faz. Ele observa as consultas e notifica quando se deve adicionar carregamento antecipado (consultas N+1), quando estiver usando carregamento antecipado que não é necessário e quando você deve usar cache de contador.
+  - 

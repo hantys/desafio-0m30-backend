@@ -18,6 +18,7 @@ RSpec.describe Address, type: :model do
     it { is_expected.to validate_presence_of(:number) }
     it { is_expected.to validate_presence_of(:city) }
     it { is_expected.to validate_presence_of(:state) }
+
     describe 'validades for cep' do
       it { is_expected.to validate_presence_of(:cep) }
       it { should allow_value("12345-678").for(:cep) }

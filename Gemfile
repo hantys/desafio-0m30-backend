@@ -42,6 +42,8 @@ gem 'redis', '4.5.1'
 # https://github.com/activerecord-hackery/ransack
 gem 'ransack'
 
+gem 'phony_rails'
+
 # https://github.com/cyu/rack-cors
 gem 'rack-cors', '1.0.3'
 

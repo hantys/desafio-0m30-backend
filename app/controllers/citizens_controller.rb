@@ -3,7 +3,7 @@ class CitizensController < ApplicationController
 
   # GET /citizens or /citizens.json
   def index
-    @q = Citizen.includes([avatar_attachment: [:blob]]).ransack(params[:q])
+    @q = Citizen.includes([:address ,avatar_attachment: [:blob]]).ransack(params[:q])
     @q.sorts = 'id desc' if @q.sorts.empty?
     @citizens = @q.result.page(params[:page])
   end

@@ -1,5 +1,12 @@
 pt-BR:
   activerecord:
+    errors:
+      models:
+        citizen:
+          improbable_phone: "não é um número de telefone provável"
+      attributes:
+        citizen:
+          phone_number: "não é um número de telefone válido"
     models:
       citizen: Munícipe
       address: Endereço
