@@ -3,6 +3,7 @@ require 'spec_helper'
 require 'redis'
 require 'cns_geretare'
 require 'phony_rails'
+# require 'sidekiq'
 require 'simple_form'
 require 'kaminari'
 require 'kaminari/helpers/helper_methods'
@@ -22,14 +23,14 @@ rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
 RSpec.configure do |config|
-  config.before(:each) do
-    Sidekiq::Testing.fake!
-  end
+  # config.before(:each) do
+  #   Sidekiq::Testing.fake!
+  # end
 
-  config.after(:each) do
-    Sidekiq::Worker.clear_all
-  end
-  
+  # config.after(:each) do
+  #   Sidekiq::Worker.clear_all
+  # end
+
   config.include FactoryBot::Syntax::Methods
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

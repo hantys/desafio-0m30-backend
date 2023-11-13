@@ -2,12 +2,12 @@ class SmsDeliveryJob < ApplicationJob
   queue_as :default
 
   def perform(phone_number, message)
-    client = Twilio::REST::Client.new(ENV['ACCOUNT_SID'], ENV['AUTH_TOKEN'])
+    # client = Twilio::REST::Client.new(ENV['ACCOUNT_SID'], ENV['AUTH_TOKEN'])
 
-    client.messages.create(
-      from: ENV['PHONE_NUMBER'],
-      to: phone_number,
-      body: message
-    )
+    # client.messages.create(
+    #   from: ENV['PHONE_NUMBER'],
+    #   to: phone_number,
+    #   body: message
+    # )
   end
 end

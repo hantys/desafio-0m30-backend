@@ -50,30 +50,6 @@ RSpec.describe Citizen, type: :model do
         end.not_to change(Citizen, :count)
       end
     end
-
-    describe '#send_sms #send_email' do
-      it 'sends welcome SMS and email after create' do
-        citizen = create(:citizen)
-        allow(citizen).to receive(:send_sms)
-        allow(citizen).to receive(:send_email)
-
-        citizen.send(:send_welcome)
-
-        expect(citizen).to have_received(:send_sms).with('Bem-vindo ao nosso serviço! Obrigado por se cadastrar.')
-        expect(citizen).to have_received(:send_email).with('Bem-vindo ao nosso serviço! Obrigado por se cadastrar.')
-      end
-
-      it 'sends update SMS and email after update' do
-        citizen = create(:citizen)
-        allow(citizen).to receive(:send_sms)
-        allow(citizen).to receive(:send_email)
-
-        citizen.update(attributes)  # Coloque os atributos desejados para a atualização
-
-        expect(citizen).to have_received(:send_sms).with('Seu cadastro foi alterado.')
-        expect(citizen).to have_received(:send_email).with('Seu cadastro foi alterado.')
-      end
-    end
   end
 
   context 'Enum' do

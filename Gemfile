@@ -44,10 +44,6 @@ gem 'ransack'
 
 gem 'phony_rails'
 
-gem 'twilio-ruby'
-
-gem 'sidekiq'
-
 # https://github.com/cyu/rack-cors
 gem 'rack-cors', '1.0.3'
 

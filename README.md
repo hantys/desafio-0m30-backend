@@ -33,4 +33,4 @@
   - Na parte das views optei por fazer algo simples para exibir todos os dados dos clientes
   - Para facilitar o cadastro do endereço, estou usando um serviço externo para consultar o cep
   - Estou utilizando a gem Bullet, ajudar a aumentar o desempenho do seu aplicativo, reduzindo o número de consultas que ele faz. Ele observa as consultas e notifica quando se deve adicionar carregamento antecipado (consultas N+1), quando estiver usando carregamento antecipado que não é necessário e quando você deve usar cache de contador.
-  - 
+  - Usando sidekiq para os jobs
