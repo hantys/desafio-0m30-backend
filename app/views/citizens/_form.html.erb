@@ -15,9 +15,9 @@
         <div class="row mt-2">
           <div class="col">
             <%= f.input :full_name %>
-            <%= f.input :document_number %>
-            <%= f.input :cns %>
-            <%= f.input :email %>
+            <%= f.input :document_number, input_html: {class: "cpf"} %>
+            <%= f.input :cns, input_html: {class: "cns"} %>
+            <%= f.input :email, input_html: {class: "email"} %>
           </div>
           <div class="col">
             <div class="card mt-4" style="width: 18rem;">
@@ -39,7 +39,7 @@
             <%= f.input :country_code, as: :string %>
           </div>
           <div class="col-4">
-            <%= f.input :phone_number %>
+            <%= f.input :phone_number, input_html: {class: "phoneFull"} %>
           </div>
         </div>
         <div class="card mt-2">
@@ -47,31 +47,37 @@
             <h5 class="card-title ">Endereço</h5>
             <p>
               <%= f.simple_fields_for :address do |addr| %>
-                <%= addr.input :cep, input_html: { class: "cep mb-2" } %>
+                <div class="row mb-2">
+                  <div class="col-3 d-flex flex-row bd-highlight mb-3">
+                    <%= addr.input :cep, wrapper_html: {id: 'cep_div'}, input_html: { class: "cep_search cep mb-2" } %>
+                    <div class="loading d-flex align-items-center p-2 bd-highlight d-none">
+                      <div class="spinner-border ml-auto mt-3" role="status" aria-hidden="true"></div>
+                    </div>
+                  </div>
+                </div>
                 <div class="row mb-2">
                   <div class="col-8">
-                    <%= addr.input :street %>
-
+                    <%= addr.input :street, input_html: { class: "street_search" } %>
                   </div>
                   <div class="col-4">
                     <%= addr.input :number %>
                   </div>
                 </div>
-                  <%= addr.input :neighborhood %>
+                  <%= addr.input :neighborhood, input_html: { class: "neighborhood_search" } %>
                 <div class="row mb-2">
                   <div class="col">
                     <%= addr.input :complement %>
                   </div>
                   <div class="col">
-                    <%= addr.input :ibge %>
+                    <%= addr.input :ibge, input_html: { class: "ibge_search" } %>
                   </div>
                 </div>
                 <div class="row mb-2">
                   <div class="col">
-                    <%= addr.input :city %>
+                    <%= addr.input :city, input_html: { class: "city_search" } %>
                   </div>
                   <div class="col">
-                    <%= addr.input :state %>
+                    <%= addr.input :state, input_html: { class: "state_search" } %>
                   </div>
                 </div>
               <% end %>

@@ -28,15 +28,15 @@ module App
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: ['assets', 'tasks'])
 
-    # Configuration for the application, engines, and railties goes here.
-    #
-    # These settings can be overridden in specific environments using the files
-    # in config/environments, which are processed later.
-    #
-    # config.time_zone = "Central Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("extras")
+    config.time_zone = "America/Sao_Paulo"
 
-    # Don't generate system test files.
+    config.i18n.enforce_available_locales = false
+    config.i18n.available_locales = %i[pt-BR en]
+    config.i18n.default_locale = :'pt-BR'
+    config.i18n.fallbacks = true
+
+    config.i18n.load_path += Dir["#{Rails.root}/config/locales/**/*.{rb,yml}"]
+
     config.generators.system_tests = nil
 
     config.generators do |g|

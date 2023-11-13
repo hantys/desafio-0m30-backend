@@ -8,5 +8,6 @@ FactoryBot.define do
     phone_number { FFaker::PhoneNumberBR.mobile_phone_number }
     cns { rand(10**14..10**15 - 1) }
     avatar { Rack::Test::UploadedFile.new("public/teste.jpg", "image/jpeg") }
+    address
   end
 end
