@@ -1,6 +1,8 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 require 'redis'
+require 'cns_geretare'
+require 'phony_rails'
 require 'simple_form'
 require 'kaminari'
 require 'kaminari/helpers/helper_methods'

@@ -27,14 +27,14 @@
 
   <td width="200" class="options">
     <%= link_to citizen_path(citizen), class: 'btn btn-info btn-sm text-white' do %>
-      <i data-feather="eye"></i>
+      <%= tag.i class: "menu-icon bi bi-eye" %>
     <% end %>
+
     <%= link_to edit_citizen_path(citizen), class: ' btn btn-primary btn-sm' do %>
-      <i data-feather="edit"></i>
+      <%= tag.i class: "menu-icon bi bi-pencil-square" %>
     <% end %>
     <%= link_to citizen_path(citizen), data: { turbo_method: :delete, turbo_confirm: t("helpers.confirm") }, class: "btn btn-#{citizen.status == 'active' ? 'danger' : 'success'} btn-sm" do %>
-      <i data-feather="<%= citizen.status == 'active' ? 'trash-2' : 'power' %>"></i>
-    
+      <%= tag.i class: "menu-icon bi bi-#{citizen.status == 'active' ? 'trash' : 'power'}" %>
     <% end %>
   </td>
 </tr>

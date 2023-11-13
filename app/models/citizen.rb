@@ -10,15 +10,17 @@ class Citizen < ApplicationRecord
 
   # Validações
   validates :full_name, presence: true
-  validates :document_number, presence: true
-  validates :cns, presence: true
-  validates :email, presence: true
-  validates :status, presence: true
+  validates :document_number, presence: true, format: { with: /\A\d{3}\.\d{3}\.\d{3}-\d{2}\z/, message: "deve estar no formato 123.456.789-01" }
+  validates :cns, presence: true, format: { with: /\A\d{15}\z/ }
+  validates :email, presence: true, format: { with: /\A[^@\s]+@[^@\s]+\.[a-zA-Z]{2,}\z/ }
   validates :birth_date, presence: true
   validates :avatar, presence: true
   validates :country_code, presence: true
-  validates :phone_number, presence: true
+  validates :phone_number, presence: true, phony_plausible: { normalized_country_code: 'BR' }
   validates :address, presence: true
+
+  validate :birth_date_cannot_be_in_the_future
+  validate :cns_must_be_valid
 
   ## ACTIVE STORAGE
   has_one_attached :avatar do |attachable|
@@ -82,5 +84,19 @@ class Citizen < ApplicationRecord
 
   def purge_avatar
     avatar.purge_later
+  end
+
+  def birth_date_cannot_be_in_the_future
+    return if birth_date.blank?
+
+    return unless birth_date > Date.today
+
+    errors.add(:birth_date, "não pode ser maior que a data atual")
+  end
+
+  def cns_must_be_valid
+    return if CnsGeretare.validate(cns)
+
+    errors.add(:cns, 'não é um CNS válido')
   end
 end

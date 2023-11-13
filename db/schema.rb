@@ -75,6 +75,16 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_12_191557) do
     t.index ["full_name"], name: "index_citizens_on_full_name"
   end
 
+  create_table "phones", force: :cascade do |t|
+    t.string "country_code", default: "+55"
+    t.string "number"
+    t.string "phonable_type", null: false
+    t.bigint "phonable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["phonable_type", "phonable_id"], name: "index_phones_on_phonable"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
 end
